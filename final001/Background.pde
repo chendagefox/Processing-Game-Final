@@ -8,3 +8,5 @@ class Background {
     image(bg1, 0, 0);
   }
 }
+
+//test
