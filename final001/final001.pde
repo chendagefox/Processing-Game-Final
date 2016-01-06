@@ -19,6 +19,12 @@ Box[][] boxs=new Box[boxCount][boxCount];
 Background bg;
 Fighter fighter;
 Hp hpDisplay;
+//我加的地方
+Blackhole hole = new Blackhole();
+Blackhole hole1 = new Blackhole();
+int a =int(random(9));
+int b =int(random(9));
+
 void setup() {
   size(1280, 720,P2D);
   backgroundMovie =new Movie(this, "video/background2.mov");
@@ -60,6 +66,8 @@ void draw() {
         }
       }
     }
+    hole.setup(a,b);
+    hole.draw();
   }
 }
 
