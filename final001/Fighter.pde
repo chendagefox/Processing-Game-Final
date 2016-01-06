@@ -2,14 +2,15 @@ class Fighter {
   PImage fighterImg;
   float x = 0;
   float y = 0;
-  float speedX = 1;
-  float speedY = 1;
+  float speedX = 0;
+  float speedY = 0;
   int t=0;
   int a=1;
   float A=0;
+  int hp=200;
   Fighter() {
     this.fighterImg = loadImage("img/fighter.png");
-    this.x = width/2;
+    this.x = 60;
     this.y = height/2;
   }
 
@@ -21,29 +22,42 @@ class Fighter {
     image(fighterImg, 0, 0);
     popMatrix();
     imageMode(CORNER);
-
-    if (this.y + speedY < height - this.fighterImg.height/2  && this.y +speedY>this.fighterImg.height/2) {
-      this.y=this.y+this.speedY;
+    
+    if (this.hp<=0) {
+      if (t==0) {
+        this.speedX=this.speedX*0.9;
+        this.speedY=this.speedY*0.9;
+      }
+      if (t!=0) {
+        t=t+a;
+      }
+      if (t==4) {
+        a=-1;
+      }
     }
 
-    if (this.x + speedX < width - this.fighterImg.width/2 && this.x +speedX>this.fighterImg.width/2) {
-      this.x=this.x+this.speedX;
+    //if (this.y + speedY < height - this.fighterImg.height/2  && this.y +speedY>this.fighterImg.height/2) {
+    //  this.y=this.y+this.speedY;
+    //}
+
+    //if (this.x + speedX < width - this.fighterImg.width/2 && this.x +speedX>this.fighterImg.width/2) {
+    //  this.x=this.x+this.speedX;
+    //}
+    this.y=this.y+this.speedY;
+    this.x=this.x+this.speedX;
+    if (this.y>height || this.y <0) {
+      this.y=abs(this.y-height)+this.speedY;
+      this.speedY=this.speedY*0.5;
+    }
+    if (this.x>width || this.x <0) {
+      this.x=abs(this.x-width)+this.speedX;
+      this.speedX=this.speedX*0.5;
     }
   }
 
   void Control(float A) {
     this.speedX=this.speedX-cos(A)*t*0.3;
     this.speedY=this.speedY-sin(A)*t*0.3; 
-    if (t==0) {
-      this.speedX=this.speedX*0.5;
-      this.speedY=this.speedY*0.5;
-    }
-    if (t!=0) {
-      t=t+a;
-    }
-    if (t==4) {
-      a=-1;
-    } 
     this.A=A;
   }
 }

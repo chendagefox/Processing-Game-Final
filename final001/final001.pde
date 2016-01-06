@@ -1,33 +1,78 @@
+import processing.video.*;
+
+
 class GameState
 {
+  static final int START = 0;
+  static final int PLAYING = 1;
+  static final int END = 2;
 }
 
-class DirectionControl
-{
-}
 
-class BoxType
-{
-} //The box is boundary
-
-//int state = GameState;
+Movie backgroundMovie;
+int state = GameState.START;
+int boxCount =9;
+Box[][] boxs=new Box[boxCount][boxCount];
 Background bg;
 Fighter fighter;
-
+Hp hpDisplay;
 void setup() {
   size(1280, 720);
-
+  backgroundMovie =new Movie(this, "video/background2.mov");
+  backgroundMovie.loop();
   bg = new Background();
   fighter = new Fighter();
+  addBox();
+  hpDisplay = new Hp();
+  frameRate(60);
 }
-void draw() {
 
-  bg.draw();
-  fighter.draw();
-  if (mousePressed==true) {
-    fighter.Control(atan2(mouseY-fighter.y, mouseX-fighter.x));
-    fighter.t=1;
-    fighter.a=1;
-    //fighter.A=atan2(mouseY-fighter.y, mouseX-fighter.x);
+void draw() {
+  if (state == GameState.START) {
+    bg.draw();
+  } else if (state == GameState.PLAYING) {
+    bg.draw();
+    fighter.draw();
+    if (mousePressed==true && fighter.hp>=0) {
+      fighter.Control(atan2(mouseY-fighter.y, mouseX-fighter.x));
+      fighter.t=1;
+      fighter.a=1;
+      if (fighter.hp>=0) {
+        fighter.hp--;
+      }
+    }
+
+    hpDisplay.updateWithFighterHP(fighter.hp);
+    for (int i =0; i<boxCount; ++i) {
+      for (int j =0; j<boxCount; ++j) {
+        if (boxs[i][j]!=null) {
+          boxs[i][j].draw();
+          if (boxs[i][j].isCollideWithFighter()) {
+            boxs[i][j]=null;
+          }
+        }
+      }
+    }
+  }
+}
+
+boolean isHit(float ax, float ay, float aw, float ah, float bx, float by, float bw, float bh)
+{
+  boolean collisionX = (ax + aw >= bx) && (bx + bw >= ax);
+  boolean collisionY = (ay + ah >= by) && (by + bh >= ay);
+  float distance = dist(ax, ay, bx, by);
+  boolean New=distance<=50;
+  return collisionX && collisionY && New;
+}
+
+void keyReleased() {
+  if (key == ENTER) {
+    switch(state) {
+    case GameState.START:
+    case GameState.END:
+      state = GameState.PLAYING;
+    default : 
+      break ;
+    }
   }
 }
