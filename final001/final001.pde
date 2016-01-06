@@ -18,7 +18,7 @@ Background bg;
 Fighter fighter;
 Hp hpDisplay;
 void setup() {
-  size(1280, 720);
+  size(1280, 720,P2D);
   backgroundMovie =new Movie(this, "video/background2.mov");
   minim = new Minim(this);
   coinMusic = minim.loadSample("music/coin.wav",128);

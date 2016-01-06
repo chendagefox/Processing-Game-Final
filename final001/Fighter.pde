@@ -9,7 +9,7 @@ class Fighter {
   float A=0;
   int hp=200;
   Fighter() {
-    this.fighterImg = loadImage("img/fighter.png");
+    this.fighterImg = loadImage("img/main.png");
     this.x = 60;
     this.y = height/2;
   }
@@ -17,7 +17,7 @@ class Fighter {
   void draw() {
     pushMatrix();
     translate(this.x, this.y);
-    rotate(A);
+    rotate(A-PI/2);
     imageMode(CENTER);
     image(fighterImg, 0, 0);
     popMatrix();

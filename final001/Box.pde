@@ -35,6 +35,7 @@ void addBox()
 {
   for (int i =0; i<boxCount; ++i) {
     for (int j =0; j<boxCount; ++j) {
+      
       boxs[i][j]=new Box(70*i+335, 70*j+55, 1, 35, 50);
     }
   }
@@ -42,5 +43,6 @@ void addBox()
 void addBox1(){
 int i =int(random(0,boxCount));
 int j =int(random(0,boxCount));
+
 
 }
