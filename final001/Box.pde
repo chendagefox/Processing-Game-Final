@@ -40,9 +40,10 @@ void addBox()
     }
   }
 }
-void addBox1(){
-int i =int(random(0,boxCount));
-int j =int(random(0,boxCount));
-
-
+void BoxRandom(){
+  int[] randoms =new int [5];
+  for (int i = 0; i < randoms.length; i ++ ) {
+  randoms[i] = int(random(0,9)+1);
+}
+  
 }

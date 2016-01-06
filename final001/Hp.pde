@@ -20,12 +20,12 @@ class Hp {
   PImage hpUI;
 
   Hp() {
-    this.hpUI = loadImage("img/hp.png");
+    this.hpUI = loadImage("img/call-2.png");
   }
   void updateWithFighterHP(int hp)
   {
     fill (255, 0, 0) ;
-    rect(55, 40, hp , 20 ) ;
+    rect(50, 40, hp , 20 );
     image(hpUI, 50, 40);
   }
 }

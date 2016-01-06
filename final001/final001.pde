@@ -5,7 +5,9 @@ class GameState
 {
   static final int START = 0;
   static final int PLAYING = 1;
-  static final int END = 2;
+  static final int PLAYING2 =2;
+  static final int PLAYING3 =3;
+  static final int END = 4;
 }
 
 Minim minim;
@@ -22,6 +24,7 @@ void setup() {
   backgroundMovie =new Movie(this, "video/background2.mov");
   minim = new Minim(this);
   coinMusic = minim.loadSample("music/coin.wav",128);
+  //coinMusic.setGain(0.1);
   backgroundMovie.loop();
   bg = new Background();
   fighter = new Fighter();
