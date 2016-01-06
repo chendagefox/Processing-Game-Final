@@ -1,5 +1,5 @@
+import ddf.minim.*;
 import processing.video.*;
-
 
 class GameState
 {
@@ -8,7 +8,8 @@ class GameState
   static final int END = 2;
 }
 
-
+Minim minim;
+AudioSample coinMusic;
 Movie backgroundMovie;
 int state = GameState.START;
 int boxCount =9;
@@ -19,6 +20,8 @@ Hp hpDisplay;
 void setup() {
   size(1280, 720);
   backgroundMovie =new Movie(this, "video/background2.mov");
+  minim = new Minim(this);
+  coinMusic = minim.loadSample("music/coin.wav",128);
   backgroundMovie.loop();
   bg = new Background();
   fighter = new Fighter();
@@ -49,6 +52,7 @@ void draw() {
           boxs[i][j].draw();
           if (boxs[i][j].isCollideWithFighter()) {
             boxs[i][j]=null;
+            coinMusic.trigger();
           }
         }
       }
