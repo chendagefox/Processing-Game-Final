@@ -24,8 +24,10 @@ class Hp {
   }
   void updateWithFighterHP(int hp)
   {
-    fill (255, 0, 0) ;
-    rect(50, 40, hp , 20 );
-    image(hpUI, 50, 40);
+    if (hp>=0) {
+      fill (255, 0, 0) ;
+      rect(50, 40, hp, 20 );
+      image(hpUI, 50, 40);
+    }
   }
 }

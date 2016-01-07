@@ -53,6 +53,9 @@ class Fighter {
       this.x=abs(this.x-width)+this.speedX;
       this.speedX=this.speedX*0.5;
     }
+    if (this.hp<=0) {
+      //state++;
+    }
   }
 
   void Control(float A) {

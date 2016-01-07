@@ -8,10 +8,16 @@ class GameState
   static final int PLAYING2 =2;
   static final int PLAYING3 =3;
   static final int END = 4;
+  static final int END2 = 5;
+  static final int END3 = 6;
+  static final int END4 = 7; 
 }
 
 Minim minim;
 AudioSample coinMusic;
+AudioSample poisonMusic;
+AudioSample speedDownMusic;
+AudioSample speedUpMusic;
 Movie backgroundMovie;
 int state = GameState.START;
 int boxCount =9;
@@ -19,22 +25,26 @@ Box[][] boxs=new Box[boxCount][boxCount];
 Background bg;
 Fighter fighter;
 Hp hpDisplay;
-//我加的地方
-Blackhole hole = new Blackhole();
-Blackhole hole1 = new Blackhole();
-int a =int(random(9));
-int b =int(random(9));
+
+//Blackhole hole = new Blackhole();
+//Blackhole hole1 = new Blackhole();
+//int a =int(random(9));
+//int b =int(random(9));
 
 void setup() {
-  size(1280, 720,P2D);
+  size(1280, 720, P2D);
   backgroundMovie =new Movie(this, "video/background2.mov");
   minim = new Minim(this);
-  coinMusic = minim.loadSample("music/coin.wav",128);
+  coinMusic = minim.loadSample("music/coin.wav", 128);
+  poisonMusic = minim.loadSample("music/Dark hit, power down.wav");
+  speedDownMusic =minim.loadSample("music/speedDown.wav");
+  speedUpMusic =minim.loadSample("music/speedUp.wav");
   //coinMusic.setGain(0.1);
   backgroundMovie.loop();
   bg = new Background();
   fighter = new Fighter();
   addBox();
+  addBox1();
   hpDisplay = new Hp();
   frameRate(60);
 }
@@ -60,14 +70,15 @@ void draw() {
         if (boxs[i][j]!=null) {
           boxs[i][j].draw();
           if (boxs[i][j].isCollideWithFighter()) {
+            boxs[i][j].Fuction();
+            boxs[i][j].MusicPlay();
             boxs[i][j]=null;
-            coinMusic.trigger();
           }
         }
       }
     }
-    hole.setup(a,b);
-    hole.draw();
+    //hole.setup(a,b);
+    //hole.draw();
   }
 }
 
