@@ -29,5 +29,7 @@ class Hp {
       rect(50, 40, hp, 20 );
       image(hpUI, 50, 40);
     }
+    textSize(32);
+    text("Score="+score,width*3/4,100);
   }
 }

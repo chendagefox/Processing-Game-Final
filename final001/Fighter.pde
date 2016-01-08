@@ -22,7 +22,7 @@ class Fighter {
     image(fighterImg, 0, 0);
     popMatrix();
     imageMode(CORNER);
-    
+
     if (this.hp<=0) {
       if (t==0) {
         this.speedX=this.speedX*0.9;
@@ -54,6 +54,12 @@ class Fighter {
       this.speedX=this.speedX*0.5;
     }
     if (this.hp<=0) {
+      fill(255, 255, 255);
+      image(end,0,0);
+      for(int i=0;i<9;i++){
+      for(int j=0;j<9;j++){
+      boxs[i][j]=null;
+      }}
       //state++;
     }
   }

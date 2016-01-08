@@ -30,7 +30,7 @@ class Box {
       return true;
     } else  return false;
   }
-  void Fuction(){}
+  void Fuction(){score+=10;}
   void MusicPlay(){coinMusic.trigger();}
 }
 void addBox()
@@ -42,29 +42,44 @@ void addBox()
   }
 }
 void addBox1() {
-  for(int i=0;i<=5;i++){
+  for(int i=0;i<3;i++){
   int a =int(random(0,9));
   int b =int(random(0,9));
   boxs[a][b] = new Box_Poison(70*a+335, 70*b+55, 1, 35, 50);
   }
-  for(int i=0;i<=5;i++){
+  for(int i=0;i<3;i++){
   int a =int(random(0,9));
   int b =int(random(0,9));
   boxs[a][b] = new Box_speedDown(70*a+335, 70*b+55, 1, 35, 50);
   }
-  for(int i=0;i<=5;i++){
+  for(int i=0;i<1;i++){
   int a =int(random(0,9));
   int b =int(random(0,9));
   boxs[a][b] = new Box_speedUp(70*a+335, 70*b+55, 1, 35, 50);
   }
-  for(int i=0;i<=5;i++){
+  for(int i=0;i<3;i++){
   int a =int(random(0,9));
   int b =int(random(0,9));
   boxs[a][b] = new Box_mess(70*a+335, 70*b+55, 1, 35, 50);
   }
-  //for(int i=0;i<=5;i++){
-  //int a =int(random(0,9));
-  //int b =int(random(0,9));
-  //boxs[a][b] = new Box_blind(70*a+335, 70*b+55, 1, 35, 50);
-  //}
+  for(int i=0;i<2;i++){
+  int a =int(random(0,9));
+  int b =int(random(0,9));
+  boxs[a][b] = new Box_blind(70*a+335, 70*b+55, 1, 35, 50);
+  }
+  for(int i=0;i<1;i++){
+  int a =int(random(0,9));
+  int b =int(random(0,9));
+  boxs[a][b] = new Box_hand(70*a+335, 70*b+55, 1, 35, 50);
+  }
+  for(int i=0;i<1;i++){
+  int a =int(random(0,9));
+  int b =int(random(0,9));
+  boxs[a][b] = new Box_leg(70*a+335, 70*b+55, 1, 35, 50);
+  }
+  for(int i=0;i<1;i++){
+  int a =int(random(0,9));
+  int b =int(random(0,9));
+  boxs[a][b] = new Box_topper(70*a+335, 70*b+55, 1, 35, 50);
+  }
 }

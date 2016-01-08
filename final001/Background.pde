@@ -25,6 +25,7 @@ class Background {
       if (backgroundMovie.available()==true){
       backgroundMovie.read();
       image(backgroundMovie,0,0);
+      bgMusic.play();
       }
       //image(bg1, 0, 0);
     } else if (state == GameState.END) {

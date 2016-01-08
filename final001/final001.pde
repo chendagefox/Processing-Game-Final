@@ -18,13 +18,16 @@ AudioSample coinMusic;
 AudioSample poisonMusic;
 AudioSample speedDownMusic;
 AudioSample speedUpMusic;
+AudioPlayer bgMusic;
 Movie backgroundMovie;
 int state = GameState.START;
 int boxCount =9;
+int score;
 Box[][] boxs=new Box[boxCount][boxCount];
 Background bg;
 Fighter fighter;
 Hp hpDisplay;
+PImage end;
 
 //Blackhole hole = new Blackhole();
 //Blackhole hole1 = new Blackhole();
@@ -33,8 +36,11 @@ Hp hpDisplay;
 
 void setup() {
   size(1280, 720, P2D);
+  end =loadImage("img/end_0_hover.png");
+  
   backgroundMovie =new Movie(this, "video/background2.mov");
   minim = new Minim(this);
+  bgMusic = minim.loadFile("music/Think.wav");
   coinMusic = minim.loadSample("music/coin.wav", 128);
   poisonMusic = minim.loadSample("music/Dark hit, power down.wav");
   speedDownMusic =minim.loadSample("music/speedDown.wav");
@@ -53,6 +59,7 @@ void draw() {
   if (state == GameState.START) {
     bg.draw();
   } else if (state == GameState.PLAYING) {
+    
     bg.draw();
     fighter.draw();
     if (mousePressed==true && fighter.hp>=0) {
@@ -63,7 +70,7 @@ void draw() {
         fighter.hp--;
       }
     }
-
+    
     hpDisplay.updateWithFighterHP(fighter.hp);
     for (int i =0; i<boxCount; ++i) {
       for (int j =0; j<boxCount; ++j) {
